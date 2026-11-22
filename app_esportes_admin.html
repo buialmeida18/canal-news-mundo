@@ -1,0 +1,90 @@
+<style id="estilo-app-esportes-admin">
+#app-esportes-exclusivo{display:none;margin:14px auto 18px;padding:14px;border-radius:14px;background:linear-gradient(160deg,#111927 0%,#0b111c 100%);border:1px solid rgba(59,130,246,.45);box-shadow:0 8px 24px rgba(0,0,0,.5);position:relative;z-index:5}
+#app-esportes-exclusivo.ativo{display:block!important}
+.app-esp-topo{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.app-esp-tag{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:rgba(220,38,38,.2);border:1px solid rgba(248,113,113,.5);color:#FCA5A5;font-size:12px;font-weight:700;text-transform:uppercase}
+.app-esp-ponto{width:8px;height:8px;border-radius:50%;background:#EF4444;box-shadow:0 0 8px #EF4444}
+.app-esp-titulo{color:#F8FAFC;font-size:15px;font-weight:700;margin:0 0 10px}
+.app-esp-auth,.app-esp-painel-admin{padding:11px;border-radius:11px;background:rgba(15,23,42,.9);border:1px solid rgba(148,163,184,.22);margin-bottom:12px}
+.app-esp-painel-admin{display:none}
+.app-esp-painel-admin.desbloqueado{display:block}
+.app-esp-linha{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.app-esp-input{flex:1 1 180px;min-width:0;padding:10px 12px;border-radius:10px;border:1px solid rgba(148,163,184,.35);background:#090d16;color:#FFF;font-size:13px}
+.app-esp-btn{padding:10px 14px;border-radius:10px;border:0;background:linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%);color:#FFF;font-size:13px;font-weight:700;cursor:pointer}
+.app-esp-btn-sec{padding:10px 12px;border-radius:10px;border:1px solid rgba(148,163,184,.3);background:#1e293b;color:#E2E8F0;font-size:12px;font-weight:600;cursor:pointer}
+.app-esp-msg{font-size:12px;color:#93C5FD;min-height:16px}
+.app-esp-sliders{display:grid;grid-template-columns:1fr;gap:7px;margin-top:8px}
+.app-esp-slider{display:flex;align-items:center;gap:8px;font-size:11px;color:#CBD5E1}
+.app-esp-slider span:first-child{width:76px;font-weight:600}
+.app-esp-slider input{flex:1;accent-color:#3B82F6}
+.app-esp-slider span:last-child{width:42px;text-align:right;color:#F8FAFC}
+.app-esp-wrap-player{width:100%;transition:transform .15s ease,max-width .15s ease}
+.app-esp-box{position:relative;width:100%;padding-top:56.25%;border-radius:12px;overflow:hidden;background:#05080f;border:1px solid rgba(148,163,184,.22)}
+.app-esp-box iframe,.app-esp-box video{position:absolute;inset:0;width:100%;height:100%;border:0}
+.app-esp-vazio{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:16px;color:#94A3B8;font-size:13px}
+.app-esp-rodape{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-top:10px;font-size:12px;color:#94A3B8}
+.app-esp-ext{color:#60A5FA;text-decoration:none;font-weight:600}
+</style>
+<section id="app-esportes-exclusivo" aria-label="App Exclusivo de Esportes Ao Vivo">
+<div class="app-esp-topo"><span class="app-esp-tag"><span class="app-esp-ponto"></span> Esportes • App</span><span style="font-size:12px;color:#94A3B8;">Canal News Mundo</span></div>
+<h3 class="app-esp-titulo">Central de Transmissão (Acesso Exclusivo)</h3>
+<div class="app-esp-auth" id="app-esp-auth">
+<div class="app-esp-linha" style="margin-bottom:4px">
+<input type="password" id="app-esp-pin" class="app-esp-input" placeholder="Digite seu PIN de acesso (padrão: 2026)..."/>
+<button type="button" id="app-esp-entrar" class="app-esp-btn">Acessar App</button>
+<button type="button" id="app-esp-sair" class="app-esp-btn-sec" style="display:none">Bloquear</button>
+</div>
+<div class="app-esp-msg" id="app-esp-msg">Modo visitante: transmissão visível; controles exclusivos protegidos por PIN.</div>
+</div>
+<div class="app-esp-painel-admin" id="app-esp-painel-admin">
+<div class="app-esp-linha">
+<input type="text" inputmode="url" autocomplete="off" id="app-esp-link" class="app-esp-input" placeholder="Cole ou envie o link do jogo (YouTube ou vídeo)..."/>
+<button type="button" id="app-esp-enviar" class="app-esp-btn">Enviar Link</button>
+<button type="button" id="app-esp-limpar" class="app-esp-btn-sec">Limpar</button>
+</div>
+<div class="app-esp-sliders">
+<label class="app-esp-slider"><span>Mover X</span><input type="range" id="app-esp-x" min="-20" max="20" value="0"/><span id="app-esp-vx">0%</span></label>
+<label class="app-esp-slider"><span>Mover Y</span><input type="range" id="app-esp-y" min="-15" max="25" value="0"/><span id="app-esp-vy">0%</span></label>
+<label class="app-esp-slider"><span>Largura</span><input type="range" id="app-esp-w" min="60" max="100" value="100"/><span id="app-esp-vw">100%</span></label>
+</div>
+<div class="app-esp-linha" style="margin-top:10px;margin-bottom:0">
+<input type="password" id="app-esp-novo-pin" class="app-esp-input" placeholder="Novo PIN exclusivo (opcional)..."/>
+<button type="button" id="app-esp-salvar-pin" class="app-esp-btn-sec">Trocar PIN</button>
+<button type="button" id="app-esp-reset-layout" class="app-esp-btn-sec">Resetar Posição</button>
+</div>
+</div>
+<div class="app-esp-wrap-player" id="app-esp-wrap-player">
+<div class="app-esp-box" id="app-esp-box"><div class="app-esp-vazio">Aguardando envio do link pelo painel exclusivo.</div></div>
+</div>
+<div class="app-esp-rodape"><span>Controle exclusivo do administrador do canal.</span><a id="app-esp-ext" class="app-esp-ext" href="#" target="_blank" rel="noopener noreferrer" style="display:none">Abrir externo ↗</a></div>
+</section>
+<script id="script-app-esportes-admin">
+(()=>{const K_URL="cnm_esp_app_url",K_PIN="cnm_esp_app_pin",K_LAY="cnm_esp_app_lay",K_AUTH="cnm_esp_app_auth";
+const norm=u=>{u=(u||"").trim();if(!u)return"";const m=u.match(/(?:youtube\.com\/(?:watch\?v=|live\/|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{6,})/);return m&&m[1]?"https://www.youtube.com/embed/"+m[1]+"?autoplay=1&rel=0":u;};
+const ehVid=u=>/\.(mp4|webm|ogg)(\?.*)?$/i.test(u);
+const emEsp=()=>decodeURIComponent(location.hash+location.pathname).toLowerCase().includes("esporte")||Array.from(document.querySelectorAll("select")).some(s=>(s.value||"").toLowerCase().includes("esporte"));
+const init=()=>{const root=document.getElementById("app-esportes-exclusivo");if(!root)return;
+const pinInp=root.querySelector("#app-esp-pin"),btnEnt=root.querySelector("#app-esp-entrar"),btnSai=root.querySelector("#app-esp-sair"),msg=root.querySelector("#app-esp-msg"),painel=root.querySelector("#app-esp-painel-admin"),linkInp=root.querySelector("#app-esp-link"),btnEnv=root.querySelector("#app-esp-enviar"),btnLim=root.querySelector("#app-esp-limpar"),rX=root.querySelector("#app-esp-x"),rY=root.querySelector("#app-esp-y"),rW=root.querySelector("#app-esp-w"),vX=root.querySelector("#app-esp-vx"),vY=root.querySelector("#app-esp-vy"),vW=root.querySelector("#app-esp-vw"),novoPin=root.querySelector("#app-esp-novo-pin"),btnPin=root.querySelector("#app-esp-salvar-pin"),btnRst=root.querySelector("#app-esp-reset-layout"),wrap=root.querySelector("#app-esp-wrap-player"),box=root.querySelector("#app-esp-box"),ext=root.querySelector("#app-esp-ext");
+const st=Array.from(document.querySelectorAll("div,span,p")).find(el=>(el.textContent||"").includes("Servidor conectado"));if(st&&st.parentNode&&st.nextSibling!==root)st.parentNode.insertBefore(root,st.nextSibling);
+const getPin=()=>localStorage.getItem(K_PIN)||"2026";
+let lay={x:0,y:0,w:100};try{Object.assign(lay,JSON.parse(localStorage.getItem(K_LAY)||"{}"));}catch(_){}
+const aplLay=()=>{rX.value=lay.x;rY.value=lay.y;rW.value=lay.w;vX.textContent=lay.x+"%";vY.textContent=lay.y+"%";vW.textContent=lay.w+"%";wrap.style.maxWidth=lay.w+"%";wrap.style.margin="0 auto";wrap.style.transform="translate("+lay.x+"%, "+lay.y+"%)";try{localStorage.setItem(K_LAY,JSON.stringify(lay));}catch(_){}};
+const setAuth=ok=>{sessionStorage.setItem(K_AUTH,ok?"1":"0");painel.classList.toggle("desbloqueado",ok);btnSai.style.display=ok?"inline-block":"none";pinInp.style.display=ok?"none":"inline-block";btnEnt.style.display=ok?"none":"inline-block";msg.textContent=ok?"Acesso exclusivo liberado: envie links e ajuste a posição.":"Modo visitante: transmissão visível; controles exclusivos protegidos por PIN.";};
+const rend=u=>{u=(u||"").trim();if(!u){box.innerHTML=\x27<div class="app-esp-vazio">Aguardando envio do link pelo painel exclusivo.</div>\x27;ext.style.display="none";return;}const f=norm(u);ext.href=u;ext.style.display="inline-block";box.innerHTML=ehVid(f)?\x27<video src="\x27+f.replace(/"/g,"&quot;")+\x27" controls autoplay playsinline></video>\x27:\x27<iframe src="\x27+f.replace(/"/g,"&quot;")+\x27" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>\x27;};
+const svUrl=localStorage.getItem(K_URL)||"";if(svUrl){linkInp.value=svUrl;rend(svUrl);}
+setAuth(sessionStorage.getItem(K_AUTH)==="1");
+aplLay();
+btnEnt.onclick=()=>{if((pinInp.value||"").trim()===getPin()){pinInp.value="";setAuth(true);}else{msg.textContent="PIN incorreto.";}};
+btnSai.onclick=()=>setAuth(false);
+btnEnv.onclick=()=>{const v=linkInp.value.trim();if(!v)return;localStorage.setItem(K_URL,v);rend(v);msg.textContent="Link enviado e salvo no seu painel exclusivo.";};
+btnLim.onclick=()=>{localStorage.removeItem(K_URL);linkInp.value="";rend("");msg.textContent="Link removido.";};
+[[rX,"x"],[rY,"y"],[rW,"w"]].forEach(([el,k])=>el.oninput=()=>{lay[k]=Number(el.value);aplLay();});
+btnRst.onclick=()=>{lay={x:0,y:0,w:100};aplLay();};
+btnPin.onclick=()=>{const np=(novoPin.value||"").trim();if(np.length<3){msg.textContent="Escolha um PIN com 3 ou mais caracteres.";return;}localStorage.setItem(K_PIN,np);novoPin.value="";msg.textContent="PIN exclusivo atualizado com sucesso.";};
+let man=null;
+const sync=()=>{if(document.activeElement===linkInp||document.activeElement===pinInp||document.activeElement===novoPin)return;root.classList.toggle("ativo",man!==null?man:emEsp());};
+document.addEventListener("change",e=>{if(painel.contains(e.target))return;man=null;sync();},true);
+document.addEventListener("click",e=>{if(root.contains(e.target))return;const a=e.target.closest("button,a,span,div,li,option");if(!a)return;const t=(a.textContent||"").trim().toLowerCase();if(t==="esportes"||t==="esporte"){man=true;sync();}else if(["todas as notícias","todas as noticias","mundo","tecnologia","geral"].includes(t)){man=false;sync();}},true);
+sync();};
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();})();
+</script>

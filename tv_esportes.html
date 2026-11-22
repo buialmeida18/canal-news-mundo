@@ -1,0 +1,63 @@
+<style id="estilo-tv-esportes-cnm">
+#tv-esportes-cnm{display:none;margin:14px auto 18px;padding:15px;border-radius:16px;background:linear-gradient(165deg,#121b2d 0%,#090e18 100%);border:1px solid rgba(59,130,246,.42);box-shadow:0 10px 28px rgba(0,0,0,.55);position:relative;z-index:5;font-family:system-ui,-apple-system,sans-serif}
+#tv-esportes-cnm.ativo{display:block!important}
+.tv-cnm-topo{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}
+.tv-cnm-ao-vivo{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:rgba(239,68,68,.18);border:1px solid rgba(248,113,113,.55);color:#FCA5A5;font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase}
+.tv-cnm-bolinha{width:8px;height:8px;border-radius:50%;background:#EF4444;box-shadow:0 0 8px #EF4444}
+.tv-cnm-canal{font-size:12px;font-weight:600;color:#94A3B8}
+.tv-cnm-titulo{margin:0 0 12px;font-size:16px;font-weight:700;color:#F8FAFC;letter-spacing:.01em}
+.tv-cnm-barra{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.tv-cnm-input{flex:1 1 210px;min-width:0;padding:11px 13px;border-radius:11px;border:1px solid rgba(148,163,184,.35);background:#0c1322;color:#FFFFFF;font-size:13px}
+.tv-cnm-input:focus{outline:none;border-color:#60A5FA;box-shadow:0 0 0 2px rgba(96,165,250,.22)}
+.tv-cnm-btn-carregar{padding:11px 16px;border-radius:11px;border:0;background:linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%);color:#FFFFFF;font-size:13px;font-weight:700;cursor:pointer}
+.tv-cnm-btn-limpar{padding:11px 13px;border-radius:11px;border:1px solid rgba(148,163,184,.28);background:#1e293b;color:#E2E8F0;font-size:13px;font-weight:600;cursor:pointer}
+.tv-cnm-moldura{position:relative;width:100%;padding-top:56.25%;border-radius:14px;overflow:hidden;background:#04070d;border:2px solid rgba(96,165,250,.32);box-shadow:inset 0 0 24px rgba(0,0,0,.75)}
+.tv-cnm-moldura iframe,.tv-cnm-moldura video{position:absolute;inset:0;width:100%;height:100%;border:0}
+.tv-cnm-tela-vazia{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:18px;background:radial-gradient(circle at center,#111c33 0%,#060911 100%);color:#94A3B8;font-size:13px;line-height:1.5}
+.tv-cnm-tela-vazia strong{color:#E2E8F0}
+.tv-cnm-rodape{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-top:11px;font-size:12px;color:#94A3B8}
+.tv-cnm-externo{color:#60A5FA;text-decoration:none;font-weight:700}
+</style>
+<section id="tv-esportes-cnm" aria-label="TV Esportes Canal News Mundo">
+<div class="tv-cnm-topo">
+<span class="tv-cnm-ao-vivo"><span class="tv-cnm-bolinha"></span> TV Esportes • Ao Vivo</span>
+<span class="tv-cnm-canal">Canal News Mundo</span>
+</div>
+<h3 class="tv-cnm-titulo">Central de Jogos ao Vivo</h3>
+<div class="tv-cnm-barra">
+<input type="text" inputmode="url" autocomplete="off" autocapitalize="off" spellcheck="false" id="tv-cnm-link" class="tv-cnm-input" placeholder="Cole aqui o link do jogo (YouTube Live ou vídeo)..."/>
+<button type="button" id="tv-cnm-carregar" class="tv-cnm-btn-carregar">Carregar Jogo</button>
+<button type="button" id="tv-cnm-limpar" class="tv-cnm-btn-limpar">Limpar</button>
+</div>
+<div class="tv-cnm-moldura" id="tv-cnm-tela">
+<div class="tv-cnm-tela-vazia">Cole o link da transmissão acima e toque em <strong>Carregar Jogo</strong> para ligar a tela da TV.</div>
+</div>
+<div class="tv-cnm-rodape">
+<span>Compatível com links do YouTube Live e vídeos diretos.</span>
+<a id="tv-cnm-ext" class="tv-cnm-externo" href="#" target="_blank" rel="noopener noreferrer" style="display:none">Abrir em nova guia ↗</a>
+</div>
+</section>
+<script id="script-tv-esportes-cnm">
+(()=>{const K="cnm_tv_esportes_url";
+const norm=u=>{const s=(u||"").trim();if(!s)return"";const m=s.match(/(?:youtube\.com\/(?:watch\?v=|live\/|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{6,})/);return m&&m[1]?"https://www.youtube.com/embed/"+m[1]+"?autoplay=1&rel=0":s;};
+const ehVid=u=>/\.(mp4|webm|ogg)(\?.*)?$/i.test(u);
+const emEsp=()=>decodeURIComponent(location.hash+location.pathname).toLowerCase().includes("esporte")||Array.from(document.querySelectorAll("select")).some(s=>(s.value||"").toLowerCase().includes("esporte"));
+const init=()=>{const tv=document.getElementById("tv-esportes-cnm");if(!tv)return;
+const inp=tv.querySelector("#tv-cnm-link"),bCar=tv.querySelector("#tv-cnm-carregar"),bLim=tv.querySelector("#tv-cnm-limpar"),tela=tv.querySelector("#tv-cnm-tela"),ext=tv.querySelector("#tv-cnm-ext");
+const st=Array.from(document.querySelectorAll("div,span,p")).find(el=>(el.textContent||"").includes("Servidor conectado"));
+if(st&&st.parentNode&&st.nextSibling!==tv)st.parentNode.insertBefore(tv,st.nextSibling);
+const rend=u=>{const l=(u||"").trim();if(!l){tela.innerHTML=\x27<div class="tv-cnm-tela-vazia">Cole o link da transmissão acima e toque em <strong>Carregar Jogo</strong> para ligar a tela da TV.</div>\x27;ext.style.display="none";return;}
+const f=norm(l);ext.href=l;ext.style.display="inline-block";
+tela.innerHTML=ehVid(f)?\x27<video src="\x27+f.replace(/"/g,"&quot;")+\x27" controls autoplay playsinline></video>\x27:\x27<iframe src="\x27+f.replace(/"/g,"&quot;")+\x27" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>\x27;};
+const sv=localStorage.getItem(K)||"";if(sv){inp.value=sv;rend(sv);}
+["pointerdown","touchstart","mousedown","click"].forEach(ev=>inp.addEventListener(ev,e=>e.stopPropagation()));
+inp.addEventListener("input",()=>localStorage.setItem(K,inp.value));
+bCar.onclick=e=>{e.stopPropagation();const v=inp.value.trim();if(!v)return;localStorage.setItem(K,v);rend(v);};
+bLim.onclick=e=>{e.stopPropagation();localStorage.removeItem(K);inp.value="";rend("");};
+let man=null;
+const sync=()=>{if(document.activeElement===inp)return;tv.classList.toggle("ativo",man!==null?man:emEsp());};
+document.addEventListener("change",e=>{if(e.target===inp)return;man=null;sync();},true);
+document.addEventListener("click",e=>{if(tv.contains(e.target))return;const a=e.target.closest("button,a,span,div,li,option");if(!a)return;const t=(a.textContent||"").trim().toLowerCase();if(t==="esportes"||t==="esporte"){man=true;sync();}else if(["todas as notícias","todas as noticias","mundo","tecnologia","geral"].includes(t)){man=false;sync();}},true);
+sync();};
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();})();
+</script>

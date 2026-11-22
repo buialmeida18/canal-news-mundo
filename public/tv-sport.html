@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TV Sport — Canal News Mundo</title>
+<style>
+  body{margin:0;font-family:system-ui,-apple-system,sans-serif;background:#090d16;color:#f8fafc;padding:14px}
+  .topo{max-width:600px;margin:0 auto 12px;display:flex;align-items:center;justify-content:space-between;gap:10px;background:#111827;padding:12px 16px;border-radius:16px;border:1px solid rgba(255,255,255,.12)}
+  .titulo{font-size:16px;font-weight:900;color:#fbbf24}
+  .voltar{text-decoration:none;background:#dc2626;color:#fff;padding:8px 14px;border-radius:10px;font-size:12px;font-weight:800}
+  .painel{max-width:600px;margin:0 auto;padding:16px;border-radius:20px;background:#111827;border:1.5px solid #f59e0b;box-shadow:0 10px 28px rgba(0,0,0,.5);box-sizing:border-box}
+  .tela{width:100%;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#05080f;display:flex;align-items:center;justify-content:center;color:#94a3b8;font-size:13px;text-align:center;padding:10px;box-sizing:border-box}
+  .tela iframe,.tela video{width:100%;height:100%;border:0}
+  .grupo{margin-top:12px}
+  .grupo label{display:block;font-size:12px;font-weight:800;color:#e2e8f0;margin-bottom:6px}
+  .linha-lado{display:flex;gap:8px;align-items:center}
+  .linha-lado input{flex:1;min-width:0;padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.16);background:#090d16;color:#f8fafc;font-size:13px;box-sizing:border-box}
+  .btn{padding:10px 12px;border-radius:10px;border:0;font-weight:900;font-size:12px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap;flex-shrink:0}
+  .btn.ouro{background:#f59e0b;color:#090d16}
+  .btn.sec{background:#1e293b;color:#f8fafc;border:1px solid rgba(255,255,255,.16)}
+  .btn.yt{background:#dc2626;color:#ffffff}
+  .btn.tt{background:#111827;color:#ffffff;border:1.5px solid #22d3ee}
+  .logo-badge{width:18px;height:18px;border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;line-height:1}
+  .logo-yt{background:#ffffff;color:#dc2626}
+  .logo-tt{background:#ff0050;color:#ffffff;box-shadow:1px 0 0 #00f2ea}
+  .status-msg{margin-top:8px;font-size:12px;color:#fbbf24;min-height:16px}
+  .rodape{margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:12px;color:#cbd5e1;flex-wrap:wrap}
+  .rodape a{color:#fbbf24;font-weight:800;text-decoration:none}
+</style>
+</head>
+<body>
+  <div class="topo">
+    <span class="titulo">TV Sport</span>
+    <a class="voltar" href="/">← Voltar para o canal</a>
+  </div>
+
+  <div class="painel">
+    <div class="tela" id="tvSportTela"><span>Cole um link de transmissão ao vivo, vídeo ou TikTok e clique em Carregar.</span></div>
+
+    <div class="grupo">
+      <label for="tvSportLink">Link na tela da TV Sport</label>
+      <div class="linha-lado">
+        <input type="text" id="tvSportLink" placeholder="Cole o link do YouTube, live ou TikTok">
+        <button type="button" class="btn ouro" id="tvSportCarregar">Carregar</button>
+        <button type="button" class="btn sec" id="tvSportLimpar">Limpar</button>
+      </div>
+    </div>
+
+    <div class="grupo">
+      <label for="linkLiveYouTube">Live ao vivo no YouTube</label>
+      <div class="linha-lado">
+        <input type="text" id="linkLiveYouTube" placeholder="Cole o link da live ao vivo no YouTube">
+        <button type="button" class="btn yt" id="abrirLiveYouTube">
+          <span class="logo-badge logo-yt">▶</span>
+          <span>YouTube</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="grupo">
+      <label for="linkLiveTikTok">Live ao vivo no TikTok</label>
+      <div class="linha-lado">
+        <input type="text" id="linkLiveTikTok" placeholder="Cole o link da live ao vivo no TikTok">
+        <button type="button" class="btn tt" id="abrirLiveTikTok">
+          <span class="logo-badge logo-tt">♪</span>
+          <span>TikTok</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="status-msg" id="tvSportStatus"></div>
+
+    <div class="rodape">
+      <span>TV Sport • Canal News Mundo</span>
+      <a id="tvSportExterno" href="#" target="_blank" rel="noopener" style="display:none">Abrir ao vivo externo ↗</a>
+    </div>
+  </div>
+
+<script>
+(()=>{
+  const K_GERAL="cnm_tv_sport_url";
+  const K_YT="cnm_tv_sport_live_yt";
+  const K_TT="cnm_tv_sport_live_tt";
+
+  const tela=document.getElementById("tvSportTela");
+  const inpGeral=document.getElementById("tvSportLink");
+  const inpYt=document.getElementById("linkLiveYouTube");
+  const inpTt=document.getElementById("linkLiveTikTok");
+  const statusEl=document.getElementById("tvSportStatus");
+  const ext=document.getElementById("tvSportExterno");
+
+  const extrairYtId=(u)=>{
+    const s=String(u||"").trim();
+    if(!s)return "";
+    if(/^[A-Za-z0-9_-]{11}$/.test(s))return s;
+    const m=s.match(/(?:youtu.be/|(?:www.|m.)?youtube.com/(?:watch?.*v=|embed/|v/|live/|shorts/))([A-Za-z0-9_-]{11})/);
+    if(m&&m[1])return m[1];
+    const q=s.match(/[?&]v=([A-Za-z0-9_-]{11})/);
+    return q&&q[1]?q[1]:"";
+  };
+
+  const extrairTtId=(u)=>{
+    const m=String(u||"").match(/tiktok.com/@[^/]+/(?:video|photo)/(d+)/);
+    return m&&m[1]?m[1]:"";
+  };
+
+  const normalizarLink=(u)=>{
+    const s=String(u||"").trim();
+    if(!s)return "";
+    if(/^https?:///i.test(s))return s;
+    if(/^[A-Za-z0-9_-]{11}$/.test(s))return "https://www.youtube.com/live/"+s;
+    return "https://"+s;
+  };
+
+  const setStatus=(msg)=>{
+    if(statusEl)statusEl.textContent=msg||"";
+  };
+
+  const encaixarLink=(rawUrl, salvarGeral=true, abrirFora=false)=>{
+    const u=normalizarLink(rawUrl);
+    if(salvarGeral){
+      localStorage.setItem(K_GERAL,u);
+      if(inpGeral)inpGeral.value=u;
+    }
+    if(!u){
+      if(tela)tela.innerHTML="<span>Cole um link de transmissão ao vivo, vídeo ou TikTok e clique em Carregar.</span>";
+      if(ext)ext.style.display="none";
+      setStatus("");
+      return;
+    }
+    if(ext){
+      ext.href=u;
+      ext.style.display="inline";
+    }
+    if(/.(mp4|webm|ogg)(?.*)?$/i.test(u)){
+      if(tela)tela.innerHTML='<video src="'+u.replace(/"/g,"&quot;")+'" controls autoplay playsinline></video>';
+      setStatus("Vídeo carregado na TV Sport.");
+      if(abrirFora)window.open(u,"_blank","noopener");
+      return;
+    }
+    const yid=extrairYtId(u);
+    if(yid){
+      const urlLive=//live//i.test(u)?u:"https://www.youtube.com/live/"+yid;
+      if(tela){
+        tela.innerHTML='<iframe src="https://www.youtube.com/embed/'+yid+'?autoplay=1&rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
+      }
+      if(ext){
+        ext.href=urlLive;
+        ext.style.display="inline";
+      }
+      setStatus("Link encaixado no player. Se o vídeo bloquear embed, toque em 'Abrir ao vivo externo ↗'.");
+      if(abrirFora)window.open(urlLive,"_blank","noopener");
+      return;
+    }
+    const tid=extrairTtId(u);
+    if(tid){
+      if(tela){
+        tela.innerHTML='<iframe src="https://www.tiktok.com/embed/v2/'+tid+'" allow="encrypted-media; fullscreen" allowfullscreen></iframe>';
+      }
+      setStatus("Link do TikTok encaixado.");
+      if(abrirFora)window.open(u,"_blank","noopener");
+      return;
+    }
+    if(tela){
+      tela.innerHTML='<iframe src="'+u.replace(/"/g,"&quot;")+'" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+    }
+    setStatus("Link encaixado na TV Sport.");
+    if(abrirFora)window.open(u,"_blank","noopener");
+  };
+
+  if(inpYt)inpYt.value=localStorage.getItem(K_YT)||"";
+  if(inpTt)inpTt.value=localStorage.getItem(K_TT)||"";
+
+  const btnCarregar=document.getElementById("tvSportCarregar");
+  const btnLimpar=document.getElementById("tvSportLimpar");
+  const btnYt=document.getElementById("abrirLiveYouTube");
+  const btnTt=document.getElementById("abrirLiveTikTok");
+
+  if(btnCarregar)btnCarregar.onclick=()=>encaixarLink(inpGeral?inpGeral.value:"", true, false);
+  if(btnLimpar)btnLimpar.onclick=()=>encaixarLink("", true, false);
+
+  if(inpGeral){
+    inpGeral.addEventListener("change",()=>encaixarLink(inpGeral.value, true, false));
+    inpGeral.addEventListener("keydown",(e)=>{
+      if(e.key==="Enter"){e.preventDefault();encaixarLink(inpGeral.value, true, false);}
+    });
+  }
+
+  if(btnYt){
+    btnYt.onclick=()=>{
+      const u=normalizarLink(inpYt?inpYt.value:"");
+      localStorage.setItem(K_YT,u);
+      if(!u){setStatus("Cole primeiro o link da live no YouTube.");return;}
+      encaixarLink(u, true, true);
+    };
+  }
+
+  if(btnTt){
+    btnTt.onclick=()=>{
+      const u=normalizarLink(inpTt?inpTt.value:"");
+      localStorage.setItem(K_TT,u);
+      if(!u){setStatus("Cole primeiro o link da live no TikTok.");return;}
+      encaixarLink(u, true, true);
+    };
+  }
+
+  const salvoInicial=localStorage.getItem(K_GERAL)||localStorage.getItem("cnm_esportes_live_url")||"";
+  if(salvoInicial)encaixarLink(salvoInicial, true, false);
+})();
+</script>
+</body>
+</html>

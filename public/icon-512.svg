@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bordaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ef233c"/>
+      <stop offset="35%" stop-color="#f59e0b"/>
+      <stop offset="70%" stop-color="#22c55e"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+    <radialGradient id="fundoGlobo" cx="50%" cy="38%" r="65%">
+      <stop offset="0%" stop-color="#ef233c"/>
+      <stop offset="75%" stop-color="#991b1b"/>
+      <stop offset="100%" stop-color="#450a0a"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Fundo escuro com borda colorida -->
+  <rect x="10" y="10" width="492" height="492" rx="96" fill="#0b0d12" stroke="url(#bordaGrad)" stroke-width="20"/>
+
+  <!-- Globo vermelho central -->
+  <circle cx="256" cy="182" r="92" fill="url(#fundoGlobo)" stroke="#ffffff" stroke-width="5"/>
+  <ellipse cx="256" cy="182" rx="48" ry="92" fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="4"/>
+  <line x1="164" y1="182" x2="348" y2="182" stroke="rgba(255,255,255,0.75)" stroke-width="4"/>
+  <path d="M 182 135 Q 256 155 330 135" fill="none" stroke="rgba(255,255,255,0.65)" stroke-width="3.5"/>
+  <path d="M 182 229 Q 256 209 330 229" fill="none" stroke="rgba(255,255,255,0.65)" stroke-width="3.5"/>
+
+  <!-- Faixa com o nome do canal -->
+  <rect x="42" y="296" width="428" height="146" rx="26" fill="#141821" stroke="url(#bordaGrad)" stroke-width="6"/>
+  <text x="256" y="352" text-anchor="middle" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="900" letter-spacing="1">CANAL NEWS</text>
+  <text x="256" y="408" text-anchor="middle" fill="#ef233c" font-family="Arial, Helvetica, sans-serif" font-size="46" font-weight="900" letter-spacing="2">MUNDO</text>
+</svg>

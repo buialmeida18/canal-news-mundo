@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#dc2626" />
+  <link rel="manifest" href="/manifest.json" />
+  <title>Canal News Mundo — Notícias em Tempo Real</title>
+  <link rel="stylesheet" href="/style.css" />
+
+
+
+
+<style id="cnm-titulo-moderno-css">
+  .cnm-nome-colorido {
+    display: inline-block !important;
+    font-family: "Arial Black", Impact, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    font-weight: 900 !important;
+    font-size: 1.35rem !important;
+    letter-spacing: -0.3px !important;
+    line-height: 1.05 !important;
+    background: linear-gradient(90deg, #ff1e56, #ff7b00, #00c6ff, #8b5cf6) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.55) !important;
+    filter: none !important;
+    white-space: nowrap !important;
+  }
+</style>
+
+
+<style id="cnm-discover-feed-css">
+  body {
+    background: #18191c !important;
+    color: #e8eaed !important;
+  }
+  article, .card, .noticia, .post, [class*="card"], [class*="noticia"] {
+    background: #1f2024 !important;
+    border: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    padding: 0 0 14px 0 !important;
+    margin-bottom: 18px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35) !important;
+  }
+  article img, .card img, .noticia img, .post img, [class*="card"] img {
+    width: 100% !important;
+    max-height: 220px !important;
+    object-fit: cover !important;
+    border-radius: 0 !important;
+    display: block !important;
+    margin: 0 0 12px 0 !important;
+  }
+  article h2, article h3, .card h2, .card h3, .noticia h2, .noticia h3 {
+    font-family: system-ui, -apple-system, Roboto, sans-serif !important;
+    font-size: 1.25rem !important;
+    font-weight: 600 !important;
+    line-height: 1.3 !important;
+    color: #f1f3f4 !important;
+    padding: 0 16px !important;
+    margin: 0 0 8px 0 !important;
+  }
+  article p, .card p, .noticia p {
+    color: #9aa0a6 !important;
+    font-size: 0.92rem !important;
+    padding: 0 16px !important;
+    margin: 0 0 12px 0 !important;
+  }
+  article button, .card button, .noticia button {
+    margin-left: 16px !important;
+    border-radius: 999px !important;
+    font-size: 0.82rem !important;
+    padding: 6px 14px !important;
+  }
+</style>
+
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="header-esquerda">
+        <button id="btn-menu" class="hamburger" type="button" aria-label="Abrir menu">☰</button>
+        <a href="#topo" class="marca">
+          <span class="marca-badge">NEWS</span>
+          <span class="marca-nome">Canal News Mundo</span>
+        </a>
+      </div>
+
+      <div class="header-acoes">
+        <button id="btn-admin" class="btn-admin-topo oculto" type="button">Modo Admin</button>
+        <button id="btn-toggle-post" class="btn-postar-topo oculto" type="button">+ Publicar</button>
+      </div>
+    </div>
+
+    <nav id="menu-gaveta" class="menu-gaveta oculto">
+      <div class="menu-bloco">
+        <strong>Seções da página principal</strong>
+        <button type="button" class="menu-link" data-cat="todas">Todas as notícias</button>
+        <button type="button" class="menu-link" data-cat="Mundo">Mundo</button>
+        <button type="button" class="menu-link" data-cat="Esportes">Esportes</button>
+        <button type="button" class="menu-link" data-cat="Tecnologia">Tecnologia</button>
+        <button type="button" class="menu-link" data-cat="Geral">Geral</button>
+      </div>
+
+      <div class="menu-bloco">
+        <strong>Canais oficiais</strong>
+
+        <div class="canal-card">
+          <div class="canal-thumb canal-thumb-tiktok" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+              <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+            </svg>
+          </div>
+          <div class="canal-info">
+            <span class="canal-titulo">TikTok</span>
+            <small class="canal-sub">@canalnewsmundo</small>
+          </div>
+          <a class="btn-canal btn-canal-tiktok" href="https://www.tiktok.com/@canalnewsmundo" target="_blank" rel="noopener">Abrir TikTok</a>
+        </div>
+
+        <div class="canal-card">
+          <div class="canal-thumb canal-thumb-youtube" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+          </div>
+          <div class="canal-info">
+            <span class="canal-titulo">YouTube</span>
+            <small class="canal-sub">Canal News Mundo</small>
+          </div>
+          <a class="btn-canal btn-canal-youtube" href="https://www.youtube.com" target="_blank" rel="noopener">Abrir YouTube</a>
+        </div>
+      </div>
+
+      <div class="menu-bloco">
+        <strong>Aparência e brilho da tela</strong>
+        <div class="painel-ajuste">
+          <label class="ajuste-linha">
+            <span>Cor principal:</span>
+            <input id="cor-tema" type="color" value="#ef233c" />
+          </label>
+
+          <div class="cores-rapidas">
+            <button type="button" class="chip-cor" data-cor="#ef233c">Vermelho</button>
+            <button type="button" class="chip-cor" data-cor="#2563eb">Azul</button>
+            <button type="button" class="chip-cor" data-cor="#16a34a">Verde</button>
+            <button type="button" class="chip-cor" data-cor="#d97706">Âmbar</button>
+          </div>
+
+          <label class="ajuste-linha">
+            <span>Brilho da tela: <strong id="valor-brilho">100%</strong></span>
+          </label>
+          <input id="controle-brilho" type="range" min="65" max="125" step="5" value="100" />
+
+          <button id="btn-reset-visual" type="button" class="btn-reset-visual">Restaurar padrão</button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="topo" class="app-main">
+    <section id="painel-postagem" class="painel-postagem oculto">
+      <div class="painel-topo">
+        <h2>Publicar notícia em tempo real</h2>
+        <button id="btn-fechar-post" type="button" class="btn-fechar">✕</button>
+      </div>
+      <form id="form-noticia">
+        <input id="titulo" type="text" placeholder="Título da notícia ou chamada" required />
+        <select id="categoria">
+          <option value="Mundo">Mundo</option>
+          <option value="Esportes">Esportes</option>
+          <option value="Tecnologia">Tecnologia</option>
+          <option value="Geral">Geral</option>
+        </select>
+        <textarea id="resumo" rows="4" placeholder="Escreva a matéria completa ou o resumo..." required></textarea>
+        <input id="videoUrl" type="url" placeholder="Link do vídeo (TikTok ou YouTube - opcional)" />
+        <label class="arquivo-label">
+          Ou enviar vídeo do aparelho (MP4, WebM, MOV):
+          <input id="videoArquivo" type="file" accept="video/*" />
+        </label>
+        <input id="imagemUrl" type="url" placeholder="Link de imagem (opcional)" />
+        <label class="arquivo-label">
+          Ou enviar foto/imagem do aparelho:
+          <input id="imagemArquivo" type="file" accept="image/*" />
+        </label>
+        <button type="submit" class="btn-enviar">Publicar agora</button>
+        <p id="status-post"></p>
+      </form>
+    </section>
+
+    <section class="barra-filtros">
+      <input id="busca" type="search" placeholder="Buscar notícia no Canal News Mundo..." />
+      <select id="filtro-categoria">
+        <option value="todas">Todas</option>
+        <option value="Mundo">Mundo</option>
+        <option value="Esportes">Esportes</option>
+        <option value="Tecnologia">Tecnologia</option>
+        <option value="Geral">Geral</option>
+      </select>
+    </section>
+
+    <div class="barra-status-discreta">
+      <button id="btn-novidades" type="button" class="btn-novidades oculto">Novas notícias — atualizar</button>
+      <span id="status-tempo-real" class="status-discreto">● Servidor conectado</span>
+    </div>
+
+    <section id="lista-noticias" class="feed-noticias"></section>
+  </main>
+
+  <div id="modal-leitura" class="modal-leitura oculto" role="dialog" aria-modal="true">
+    <div class="modal-conteudo">
+      <div class="modal-topo">
+        <span id="modal-categoria" class="chapeu"></span>
+        <button id="btn-fechar-modal" type="button" class="btn-fechar">✕</button>
+      </div>
+      <div id="modal-corpo"></div>
+      <div class="modal-relacionados">
+        <h3>Leia também</h3>
+        <div id="modal-lista-relacionados" class="relacionados-grid"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+
+
+
+
+
+
+
+<script id="cnm-google-barra-seta">
+(function () {
+  function irParaGoogle(valor) {
+    const termo = (valor || "").trim();
+    if (!termo) return;
+    const url = "https://www.google.com/search?q=" + encodeURIComponent(termo);
+    window.open(url, "_blank", "noopener,noreferrer");
+  }
+
+  window.irParaGoogle = irParaGoogle;
+
+  function acharInputBusca() {
+    const inputs = Array.from(document.querySelectorAll("input"));
+    return inputs.find((el) => {
+      if (el.closest(".cnm-linha-busca-google") && el.tagName === "INPUT") return true;
+      const tipo = (el.type || "").toLowerCase();
+      if (tipo === "hidden" || tipo === "checkbox" || tipo === "radio" || tipo === "file" || tipo === "password") return false;
+      const rect = el.getBoundingClientRect();
+      return rect.width > 80 && rect.height > 20;
+    }) || inputs[0] || null;
+  }
+
+  function limparDuplicados() {
+    document.querySelectorAll(".cnm-btn-google-direto, .cnm-btn-google-mini").forEach((b) => b.remove());
+    document.querySelectorAll(".cnm-linha-busca-google").forEach((linha) => {
+      const inp = linha.querySelector("input");
+      const pai = linha.parentElement;
+      if (inp && pai) {
+        pai.insertBefore(inp, linha);
+      }
+      linha.remove();
+    });
+  }
+
+  function montarBotaoUnico() {
+    limparDuplicados();
+    const input = acharInputBusca();
+    if (!input) return;
+
+    input.setAttribute("enterkeyhint", "search");
+
+    if (!input.dataset.cnmEnterBound) {
+      input.dataset.cnmEnterBound = "1";
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          irParaGoogle(input.value);
+        }
+      });
+    }
+
+    const pai = input.parentElement;
+    if (!pai) return;
+
+    const linha = document.createElement("div");
+    linha.className = "cnm-linha-busca-google";
+    linha.style.display = "flex";
+    linha.style.alignItems = "center";
+    linha.style.gap = "6px";
+    linha.style.width = "100%";
+    linha.style.maxWidth = "100%";
+    linha.style.boxSizing = "border-box";
+
+    pai.insertBefore(linha, input);
+
+    input.style.flex = "1 1 auto";
+    input.style.minWidth = "0";
+    input.style.width = "auto";
+    input.style.maxWidth = "100%";
+    input.style.boxSizing = "border-box";
+
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "cnm-btn-google-mini";
+    btn.textContent = "Google →";
+    btn.title = "Buscar no Google";
+    btn.style.height = "38px";
+    btn.style.padding = "0 10px";
+    btn.style.borderRadius = "8px";
+    btn.style.border = "1px solid rgba(255,255,255,0.45)";
+    btn.style.background = "#f3f4f6";
+    btn.style.color = "#111827";
+    btn.style.fontWeight = "700";
+    btn.style.fontSize = "0.78rem";
+    btn.style.whiteSpace = "nowrap";
+    btn.style.flex = "0 0 auto";
+    btn.style.cursor = "pointer";
+
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      irParaGoogle(input.value);
+    });
+
+    linha.appendChild(input);
+    linha.appendChild(btn);
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    montarBotaoUnico();
+    setTimeout(montarBotaoUnico, 350);
+  });
+})();
+</script>
+
+
+
+
+<script id="cnm-titulo-moderno-js">
+(function () {
+  function aplicarTituloRobusto() {
+    const todos = Array.from(document.querySelectorAll("body *"));
+    for (const el of todos) {
+      if (el.closest("article, .card, .noticia, .post")) continue;
+      const rect = el.getBoundingClientRect();
+      if (rect.top < 0 || rect.top > 150 || rect.height === 0) continue;
+      if (el.children.length > 0) continue;
+      const txt = (el.textContent || "").trim();
+      if (txt === "Canal News Mundo") {
+        el.classList.add("cnm-nome-colorido");
+      }
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    aplicarTituloRobusto();
+    setTimeout(aplicarTituloRobusto, 250);
+    setTimeout(aplicarTituloRobusto, 800);
+  });
+})();
+</script>
+
+</body>
+</html>

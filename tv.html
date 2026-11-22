@@ -1,0 +1,45 @@
+<style id="estilo-tv-esportes-cnm">
+#tv-esportes-cnm{display:none;margin:14px auto 18px;padding:14px;border-radius:14px;background:#101827;border:1px solid #3b82f6;color:#f8fafc}
+#tv-esportes-cnm.ativo{display:block!important}
+.tv-row{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.tv-in{flex:1 1 180px;padding:10px;border-radius:8px;border:1px solid #475569;background:#090d16;color:#fff}
+.tv-btn{padding:10px 14px;border-radius:8px;border:0;background:#2563eb;color:#fff;font-weight:700}
+.tv-btn2{padding:10px 12px;border-radius:8px;border:1px solid #475569;background:#1e293b;color:#e2e8f0}
+.tv-box{position:relative;width:100%;height:210px;border-radius:12px;overflow:hidden;background:#04070d;border:2px solid #38bdf8;display:flex;align-items:center;justify-content:center;text-align:center;color:#94a3b8;font-size:13px}
+.tv-box iframe,.tv-box video{position:absolute;inset:0;width:100%;height:100%;border:0}
+</style>
+<section id="tv-esportes-cnm">
+<div><strong>TV Esportes • Canal News Mundo</strong></div>
+<div class="tv-row">
+<input id="tv-url" class="tv-in" placeholder="Cole o link do jogo..."/>
+<button id="tv-go" class="tv-btn">Carregar</button>
+<button id="tv-clr" class="tv-btn2">Limpar</button>
+</div>
+<div id="tv-tela" class="tv-box"><span>Quadrado da TV — cole um link e toque em Carregar</span></div>
+</section>
+<script id="script-tv-esportes-cnm">
+(()=>{const K="cnm_tv_url";
+const norm=u=>{u=(u||"").trim();const m=u.match(/(?:youtube\.com\/(?:watch\?v=|live\/|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{6,})/);return m?"https://www.youtube.com/embed/"+m[1]+"?autoplay=1&rel=0":u;};
+const run=()=>{const s=document.getElementById("tv-esportes-cnm");if(!s)return;
+const inp=s.querySelector("#tv-url"),go=s.querySelector("#tv-go"),clr=s.querySelector("#tv-clr"),tela=s.querySelector("#tv-tela");
+const st=Array.from(document.querySelectorAll("div,span,p")).find(e=>(e.textContent||"").includes("Servidor conectado"));
+if(st&&st.parentNode)st.parentNode.insertBefore(s,st.nextSibling);
+const rend=u=>{u=(u||"").trim();if(!u){tela.innerHTML="<span>Quadrado da TV — cole um link e toque em Carregar</span>";return;}
+const f=norm(u);
+const tag=/\.(mp4|webm|ogg)(\?.*)?$/i.test(f)?"video":"iframe";
+const el=document.createElement(tag);
+el.src=f;
+if(tag==="video"){el.controls=true;el.autoplay=true;el.playsInline=true;}
+else{el.allow="autoplay; fullscreen; picture-in-picture";el.allowFullscreen=true;}
+tela.innerHTML="";tela.appendChild(el);};
+const sv=localStorage.getItem(K)||"";if(sv){inp.value=sv;rend(sv);}
+go.onclick=()=>{const v=inp.value.trim();if(!v)return;localStorage.setItem(K,v);rend(v);};
+clr.onclick=()=>{localStorage.removeItem(K);inp.value="";rend("");};
+const isEsp=()=>decodeURIComponent(location.hash+location.pathname).toLowerCase().includes("esporte")||Array.from(document.querySelectorAll("select")).some(el=>(el.value||"").toLowerCase().includes("esporte"));
+let man=null;
+const sync=()=>{if(document.activeElement===inp)return;s.classList.toggle("ativo",man!==null?man:isEsp());};
+document.addEventListener("change",()=>{man=null;sync();},true);
+document.addEventListener("click",e=>{if(s.contains(e.target))return;const a=e.target.closest("button,a,span,div,li,option");if(!a)return;const t=(a.textContent||"").trim().toLowerCase();if(t==="esportes"||t==="esporte"){man=true;sync();}else if(["todas as notícias","todas as noticias","mundo","tecnologia","geral"].includes(t)){man=false;sync();}},true);
+sync();};
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",run);else run();})();
+</script>

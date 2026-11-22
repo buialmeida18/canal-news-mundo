@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#dc2626" />
+  <link rel="manifest" href="/manifest.json" />
+  <title>Canal News Mundo — Notícias em Tempo Real</title>
+  <link rel="stylesheet" href="/style.css" />
+
+
+
+
+<style id="cnm-titulo-moderno-css">
+  .cnm-nome-colorido {
+    display: inline-block !important;
+    font-family: "Arial Black", Impact, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    font-weight: 900 !important;
+    font-size: 1.35rem !important;
+    letter-spacing: -0.3px !important;
+    line-height: 1.05 !important;
+    background: linear-gradient(90deg, #ff1e56, #ff7b00, #00c6ff, #8b5cf6) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.55) !important;
+    filter: none !important;
+    white-space: nowrap !important;
+  }
+</style>
+
+
+<style id="cnm-discover-feed-css">
+  body {
+    background: #18191c !important;
+    color: #e8eaed !important;
+  }
+  article, .card, .noticia, .post, [class*="card"], [class*="noticia"] {
+    background: #1f2024 !important;
+    border: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    padding: 0 0 14px 0 !important;
+    margin-bottom: 18px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35) !important;
+  }
+  article img, .card img, .noticia img, .post img, [class*="card"] img {
+    width: 100% !important;
+    max-height: 220px !important;
+    object-fit: cover !important;
+    border-radius: 0 !important;
+    display: block !important;
+    margin: 0 0 12px 0 !important;
+  }
+  article h2, article h3, .card h2, .card h3, .noticia h2, .noticia h3 {
+    font-family: system-ui, -apple-system, Roboto, sans-serif !important;
+    font-size: 1.25rem !important;
+    font-weight: 600 !important;
+    line-height: 1.3 !important;
+    color: #f1f3f4 !important;
+    padding: 0 16px !important;
+    margin: 0 0 8px 0 !important;
+  }
+  article p, .card p, .noticia p {
+    color: #9aa0a6 !important;
+    font-size: 0.92rem !important;
+    padding: 0 16px !important;
+    margin: 0 0 12px 0 !important;
+  }
+  article button, .card button, .noticia button {
+    margin-left: 16px !important;
+    border-radius: 999px !important;
+    font-size: 0.82rem !important;
+    padding: 6px 14px !important;
+  }
+</style>
+
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="header-esquerda">
+        <button id="btn-menu" class="hamburger" type="button" aria-label="Abrir menu">☰</button>
+        <a href="#topo" class="marca">
+          <span class="marca-badge">NEWS</span>
+          <span class="marca-nome">Canal News Mundo</span>
+        </a>
+      </div>
+
+      <div class="header-acoes">
+        <button id="btn-admin" class="btn-admin-topo oculto" type="button">Modo Admin</button>
+        <button id="btn-toggle-post" class="btn-postar-topo oculto" type="button">+ Publicar</button>
+      </div>
+    </div>
+
+    <nav id="menu-gaveta" class="menu-gaveta oculto">
+      <div class="menu-bloco">
+        <strong>Seções da página principal</strong>
+        <button type="button" class="menu-link" data-cat="todas">Todas as notícias</button>
+        <button type="button" class="menu-link" data-cat="Mundo">Mundo</button>
+        <button type="button" class="menu-link" data-cat="Esportes">Esportes</button>
+        <button type="button" class="menu-link" data-cat="Tecnologia">Tecnologia</button>
+        <button type="button" class="menu-link" data-cat="Geral">Geral</button>
+      </div>
+
+      <div class="menu-bloco">
+        <strong>Canais oficiais</strong>
+
+        <div class="canal-card">
+          <div class="canal-thumb canal-thumb-tiktok" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+              <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+            </svg>
+          </div>
+          <div class="canal-info">
+            <span class="canal-titulo">TikTok</span>
+            <small class="canal-sub">@canalnewsmundo</small>
+          </div>
+          <a class="btn-canal btn-canal-tiktok" href="https://www.tiktok.com/@canalnewsmundo" target="_blank" rel="noopener">Abrir TikTok</a>
+        </div>
+
+        <div class="canal-card">
+          <div class="canal-thumb canal-thumb-youtube" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+          </div>
+          <div class="canal-info">
+            <span class="canal-titulo">YouTube</span>
+            <small class="canal-sub">Canal News Mundo</small>
+          </div>
+          <a class="btn-canal btn-canal-youtube" href="https://www.youtube.com" target="_blank" rel="noopener">Abrir YouTube</a>
+        </div>
+      </div>
+
+      <div class="menu-bloco">
+        <strong>Aparência e brilho da tela</strong>
+        <div class="painel-ajuste">
+          <label class="ajuste-linha">
+            <span>Cor principal:</span>
+            <input id="cor-tema" type="color" value="#ef233c" />
+          </label>
+
+          <div class="cores-rapidas">
+            <button type="button" class="chip-cor" data-cor="#ef233c">Vermelho</button>
+            <button type="button" class="chip-cor" data-cor="#2563eb">Azul</button>
+            <button type="button" class="chip-cor" data-cor="#16a34a">Verde</button>
+            <button type="button" class="chip-cor" data-cor="#d97706">Âmbar</button>
+          </div>
+
+          <label class="ajuste-linha">
+            <span>Brilho da tela: <strong id="valor-brilho">100%</strong></span>
+          </label>
+          <input id="controle-brilho" type="range" min="65" max="125" step="5" value="100" />
+
+          <button id="btn-reset-visual" type="button" class="btn-reset-visual">Restaurar padrão</button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="topo" class="app-main">
+    <section id="painel-postagem" class="painel-postagem oculto">
+      <div class="painel-topo">
+        <h2>Publicar notícia em tempo real</h2>
+        <button id="btn-fechar-post" type="button" class="btn-fechar">✕</button>
+      </div>
+      <form id="form-noticia">
+        <input id="titulo" type="text" placeholder="Título da notícia ou chamada" required />
+        <select id="categoria">
+          <option value="Mundo">Mundo</option>
+          <option value="Esportes">Esportes</option>
+          <option value="Tecnologia">Tecnologia</option>
+          <option value="Geral">Geral</option>
+        </select>
+        <textarea id="resumo" rows="4" placeholder="Escreva a matéria completa ou o resumo..." required></textarea>
+        <input id="videoUrl" type="url" placeholder="Link do vídeo (TikTok ou YouTube - opcional)" />
+        <label class="arquivo-label">
+          Ou enviar vídeo do aparelho (MP4, WebM, MOV):
+          <input id="videoArquivo" type="file" accept="video/*" />
+        </label>
+        <input id="imagemUrl" type="url" placeholder="Link de imagem (opcional)" />
+        <label class="arquivo-label">
+          Ou enviar foto/imagem do aparelho:
+          <input id="imagemArquivo" type="file" accept="image/*" />
+        </label>
+        <button type="submit" class="btn-enviar">Publicar agora</button>
+        <p id="status-post"></p>
+      </form>
+    </section>
+
+    <section class="barra-filtros">
+      <input id="busca" type="search" placeholder="Buscar notícia no Canal News Mundo..." />
+      <select id="filtro-categoria">
+        <option value="todas">Todas</option>
+        <option value="Mundo">Mundo</option>
+        <option value="Esportes">Esportes</option>
+        <option value="Tecnologia">Tecnologia</option>
+        <option value="Geral">Geral</option>
+      </select>
+    </section>
+
+    <div class="barra-status-discreta">
+      <button id="btn-novidades" type="button" class="btn-novidades oculto">Novas notícias — atualizar</button>
+      <span id="status-tempo-real" class="status-discreto">● Servidor conectado</span>
+    </div>
+
+    <section id="lista-noticias" class="feed-noticias"></section>
+  </main>
+
+  <div id="modal-leitura" class="modal-leitura oculto" role="dialog" aria-modal="true">
+    <div class="modal-conteudo">
+      <div class="modal-topo">
+        <span id="modal-categoria" class="chapeu"></span>
+        <button id="btn-fechar-modal" type="button" class="btn-fechar">✕</button>
+      </div>
+      <div id="modal-corpo"></div>
+      <div class="modal-relacionados">
+        <h3>Leia também</h3>
+        <div id="modal-lista-relacionados" class="relacionados-grid"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+
+
+
+
+
+
+
+<script id="cnm-google-barra-seta">
+(function () {
+  function irParaGoogle(valor) {
+    const termo = (valor || "").trim();
+    if (!termo) return;
+    const url = "https://www.google.com/search?q=" + encodeURIComponent(termo);
+    window.open(url, "_blank", "noopener,noreferrer");
+  }
+
+  window.irParaGoogle = irParaGoogle;
+
+  function acharInputBusca() {
+    const inputs = Array.from(document.querySelectorAll("input"));
+    return inputs.find((el) => {
+      if (el.closest(".cnm-linha-busca-google") && el.tagName === "INPUT") return true;
+      const tipo = (el.type || "").toLowerCase();
+      if (tipo === "hidden" || tipo === "checkbox" || tipo === "radio" || tipo === "file" || tipo === "password") return false;
+      const rect = el.getBoundingClientRect();
+      return rect.width > 80 && rect.height > 20;
+    }) || inputs[0] || null;
+  }
+
+  function limparDuplicados() {
+    document.querySelectorAll(".cnm-btn-google-direto, .cnm-btn-google-mini").forEach((b) => b.remove());
+    document.querySelectorAll(".cnm-linha-busca-google").forEach((linha) => {
+      const inp = linha.querySelector("input");
+      const pai = linha.parentElement;
+      if (inp && pai) {
+        pai.insertBefore(inp, linha);
+      }
+      linha.remove();
+    });
+  }
+
+  function montarBotaoUnico() {
+    limparDuplicados();
+    const input = acharInputBusca();
+    if (!input) return;
+
+    input.setAttribute("enterkeyhint", "search");
+
+    if (!input.dataset.cnmEnterBound) {
+      input.dataset.cnmEnterBound = "1";
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          irParaGoogle(input.value);
+        }
+      });
+    }
+
+    const pai = input.parentElement;
+    if (!pai) return;
+
+    const linha = document.createElement("div");
+    linha.className = "cnm-linha-busca-google";
+    linha.style.display = "flex";
+    linha.style.alignItems = "center";
+    linha.style.gap = "6px";
+    linha.style.width = "100%";
+    linha.style.maxWidth = "100%";
+    linha.style.boxSizing = "border-box";
+
+    pai.insertBefore(linha, input);
+
+    input.style.flex = "1 1 auto";
+    input.style.minWidth = "0";
+    input.style.width = "auto";
+    input.style.maxWidth = "100%";
+    input.style.boxSizing = "border-box";
+
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "cnm-btn-google-mini";
+    btn.textContent = "Google →";
+    btn.title = "Buscar no Google";
+    btn.style.height = "38px";
+    btn.style.padding = "0 10px";
+    btn.style.borderRadius = "8px";
+    btn.style.border = "1px solid rgba(255,255,255,0.45)";
+    btn.style.background = "#f3f4f6";
+    btn.style.color = "#111827";
+    btn.style.fontWeight = "700";
+    btn.style.fontSize = "0.78rem";
+    btn.style.whiteSpace = "nowrap";
+    btn.style.flex = "0 0 auto";
+    btn.style.cursor = "pointer";
+
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      irParaGoogle(input.value);
+    });
+
+    linha.appendChild(input);
+    linha.appendChild(btn);
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    montarBotaoUnico();
+    setTimeout(montarBotaoUnico, 350);
+  });
+})();
+</script>
+
+
+
+
+<script id="cnm-titulo-moderno-js">
+(function () {
+  function aplicarTituloRobusto() {
+    const todos = Array.from(document.querySelectorAll("body *"));
+    for (const el of todos) {
+      if (el.closest("article, .card, .noticia, .post")) continue;
+      const rect = el.getBoundingClientRect();
+      if (rect.top < 0 || rect.top > 150 || rect.height === 0) continue;
+      if (el.children.length > 0) continue;
+      const txt = (el.textContent || "").trim();
+      if (txt === "Canal News Mundo") {
+        el.classList.add("cnm-nome-colorido");
+      }
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    aplicarTituloRobusto();
+    setTimeout(aplicarTituloRobusto, 250);
+    setTimeout(aplicarTituloRobusto, 800);
+  });
+})();
+</script>
+
+
+
+
+
+
+
+<style id="css-cnm-aovivo">
+  #cnm-aovivo-box {
+    display: none;
+    margin: 14px auto 18px;
+    padding: 16px;
+    border-radius: 18px;
+    background: #0b1324;
+    border: 1px solid #1e293b;
+    color: #f8fafc;
+    box-shadow: 0 10px 25px rgba(0,0,0,.35);
+  }
+  #cnm-aovivo-box.visivel { display: block !important; }
+  .cnm-av-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .cnm-av-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    background: rgba(239,68,68,.16);
+    border: 1px solid rgba(248,113,113,.45);
+    color: #fca5a5;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .5px;
+  }
+  .cnm-av-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #ef4444;
+  }
+  .cnm-av-canal { font-size: 13px; font-weight: 700; color: #cbd5e1; text-align: right; }
+  .cnm-av-titulo { font-size: 18px; font-weight: 800; margin: 0 0 12px; color: #fff; }
+  .cnm-av-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 13px 14px;
+    border-radius: 12px;
+    border: 1px solid #334155;
+    background: #070d19;
+    color: #fff;
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+  .cnm-av-btns { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
+  .cnm-av-btn1 {
+    padding: 11px 18px;
+    border-radius: 12px;
+    border: 0;
+    background: #2563eb;
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+  }
+  .cnm-av-btn2 {
+    padding: 11px 16px;
+    border-radius: 12px;
+    border: 1px solid #334155;
+    background: #172033;
+    color: #e2e8f0;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .cnm-av-tela {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #040811;
+    border: 1px solid #1e293b;
+  }
+  .cnm-av-tela iframe,
+  .cnm-av-tela video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  .cnm-av-vazio {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px;
+    text-align: center;
+    color: #94a3b8;
+    font-size: 13px;
+  }
+  .cnm-av-dica { margin: 12px 0 10px; font-size: 13px; color: #94a3b8; line-height: 1.45; }
+  .cnm-av-ext { display: inline-block; color: #60a5fa; font-weight: 700; font-size: 14px; text-decoration: none; }
+</style>
+
+<section id="cnm-aovivo-box">
+  <div class="cnm-av-top">
+    <span class="cnm-av-badge"><span class="cnm-av-dot"></span>ESPORTES • AO VIVO</span>
+    <span class="cnm-av-canal">Canal News Mundo</span>
+  </div>
+  <h3 class="cnm-av-titulo">Transmissão do Jogo Ao Vivo</h3>
+  <input id="cnm-av-url" class="cnm-av-input" type="text" placeholder="Cole link do YouTube, TikTok ou TV ao vivo..." />
+  <div class="cnm-av-btns">
+    <button id="cnm-av-load" class="cnm-av-btn1" type="button">Carregar Jogo</button>
+    <button id="cnm-av-clear" class="cnm-av-btn2" type="button">Limpar</button>
+    <button id="cnm-av-keep" class="cnm-av-btn2" type="button">Manter Espaço: ON</button>
+  </div>
+  <div id="cnm-av-tela" class="cnm-av-tela">
+    <div class="cnm-av-vazio">Cole um link do YouTube, TikTok ou TV ao vivo e toque em <strong>Carregar Jogo</strong>.</div>
+  </div>
+  <p class="cnm-av-dica">Dica: links do YouTube Live, TikTok ou transmissões ao vivo funcionam direto na tela.</p>
+  <a id="cnm-av-ext" class="cnm-av-ext" href="#" target="_blank" rel="noopener noreferrer" style="display:none;">Abrir transmissão externa ↗</a>
+</section>
+
+<script id="cnm-aovivo-js">
+(() => {
+  const K_URL = "cnm_aovivo_url";
+  const K_KEEP = "cnm_aovivo_keep";
+
+  const parseUrl = (raw) => {
+    const u = (raw || "").trim();
+    if (!u) return { tipo: "vazio", src: "" };
+
+    const yt = u.match(/(?:youtube.com/(?:watch?v=|live/|embed/|shorts/)|youtu.be/)([a-zA-Z0-9_-]{6,})/);
+    if (yt && yt[1]) {
+      return { tipo: "iframe", src: "https://www.youtube.com/embed/" + yt[1] + "?autoplay=1&rel=0" };
+    }
+
+    const tt = u.match(/tiktok.com/@[^/]+/video/(d+)/);
+    if (tt && tt[1]) {
+      return { tipo: "iframe", src: "https://www.tiktok.com/embed/v2/" + tt[1] };
+    }
+
+    if (/.(mp4|webm|ogg|m3u8)(?.*)?$/i.test(u)) {
+      return { tipo: "video", src: u };
+    }
+
+    return { tipo: "iframe", src: u };
+  };
+
+  const run = () => {
+    const box = document.getElementById("cnm-aovivo-box");
+    if (!box) return;
+
+    const inp = box.querySelector("#cnm-av-url");
+    const btnLoad = box.querySelector("#cnm-av-load");
+    const btnClear = box.querySelector("#cnm-av-clear");
+    const btnKeep = box.querySelector("#cnm-av-keep");
+    const tela = box.querySelector("#cnm-av-tela");
+    const ext = box.querySelector("#cnm-av-ext");
+
+    const main = document.querySelector("main") || document.body;
+    if (box.parentNode !== main) main.appendChild(box);
+
+    let keep = localStorage.getItem(K_KEEP) !== "0";
+    const paintKeep = () => {
+      btnKeep.textContent = keep ? "Manter Espaço: ON" : "Manter Espaço: OFF";
+    };
+    paintKeep();
+
+    const render = (raw) => {
+      const info = parseUrl(raw);
+      if (info.tipo === "vazio") {
+        tela.innerHTML = '<div class="cnm-av-vazio">Cole um link do YouTube, TikTok ou TV ao vivo e toque em <strong>Carregar Jogo</strong>.</div>';
+        ext.style.display = "none";
+        return;
+      }
+
+      ext.href = (raw || "").trim();
+      ext.style.display = "inline-block";
+
+      if (info.tipo === "video") {
+        const v = document.createElement("video");
+        v.src = info.src;
+        v.controls = true;
+        v.autoplay = true;
+        v.playsInline = true;
+        tela.innerHTML = "";
+        tela.appendChild(v);
+        return;
+      }
+
+      const fr = document.createElement("iframe");
+      fr.src = info.src;
+      fr.allow = "autoplay; fullscreen; picture-in-picture";
+      fr.allowFullscreen = true;
+      tela.innerHTML = "";
+      tela.appendChild(fr);
+    };
+
+    const saved = localStorage.getItem(K_URL) || "";
+    if (saved) {
+      inp.value = saved;
+      render(saved);
+    }
+
+    btnLoad.onclick = () => {
+      const v = inp.value.trim();
+      if (!v) return;
+      localStorage.setItem(K_URL, v);
+      render(v);
+    };
+
+    btnClear.onclick = () => {
+      localStorage.removeItem(K_URL);
+      inp.value = "";
+      render("");
+    };
+
+    btnKeep.onclick = () => {
+      keep = !keep;
+      localStorage.setItem(K_KEEP, keep ? "1" : "0");
+      paintKeep();
+      sync();
+    };
+
+    const isEsp = () =>
+      decodeURIComponent(location.pathname + location.hash).toLowerCase().includes("esporte") ||
+      Array.from(document.querySelectorAll("select")).some((s) => (s.value || "").toLowerCase().includes("esporte"));
+
+    let man = null;
+    const sync = () => {
+      if (document.activeElement === inp) return;
+      const shouldShow = keep || (man !== null ? man : isEsp());
+      box.classList.toggle("visivel", shouldShow);
+    };
+
+    document.addEventListener("change", () => { man = null; sync(); }, true);
+    document.addEventListener("click", (e) => {
+      if (box.contains(e.target)) return;
+      const a = e.target.closest("button,a,span,div,li,option");
+      if (!a) return;
+      const t = (a.textContent || "").trim().toLowerCase();
+      if (t === "esportes" || t === "esporte") { man = true; sync(); }
+      else if (["todas as notícias", "todas as noticias", "mundo", "tecnologia", "geral"].includes(t)) { man = false; sync(); }
+    }, true);
+
+    sync();
+    setInterval(sync, 600);
+  };
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", run);
+  else run();
+})();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style id="cnm-limpo-style">
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0;width:100%;max-width:100vw;overflow-x:hidden}
+main,#root,#app,.container,.main-content{width:100%;max-width:960px;margin-left:auto!important;margin-right:auto!important;padding-left:12px!important;padding-right:12px!important;float:none!important}
+#tv-cnm-box{display:none;width:100%;margin:16px auto 20px;padding:15px;border-radius:18px;background:linear-gradient(180deg,#151b28 0%,#0b0f17 100%);border:1.5px solid var(--cnm-cor,#f59e0b);color:#f8fafc}
+#tv-cnm-box.so-esportes{display:block}
+.tv-cnm-top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:12px;font-size:13px;font-weight:800}
+.tv-cnm-badge{display:inline-flex;align-items:center;gap:6px;background:var(--cnm-cor,#f59e0b);color:#090d16;padding:5px 11px;border-radius:999px;font-size:11px;font-weight:900}
+.tv-cnm-canal{color:var(--cnm-cor,#fbbf24);font-weight:800}
+.tv-cnm-edit{display:none;margin-bottom:10px}
+.tv-cnm-edit.visivel{display:block}
+.tv-cnm-doms{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:10px}
+.tv-cnm-dom{padding:7px 12px;border-radius:10px;border:1px solid var(--cnm-cor,#f59e0b);background:#1e2433;color:#ffffff;font-size:12px;font-weight:700;text-decoration:none}
+.tv-cnm-in{width:100%;padding:11px 12px;border-radius:12px;border:1px solid #475569;background:#070a10;color:#fff;margin-bottom:10px;font-size:13px}
+.tv-cnm-btns{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.tv-cnm-b1{padding:10px 15px;border-radius:12px;border:0;background:var(--cnm-cor,#f59e0b);color:#090d16;font-weight:800;font-size:13px}
+.tv-cnm-b2{padding:10px 13px;border-radius:12px;border:1px solid #475569;background:#1e293b;color:#f1f5f9;font-weight:700;font-size:13px}
+.tv-cnm-scr{position:relative;width:100%;padding-top:56.25%;border-radius:14px;overflow:hidden;background:#04060b;border:1px solid #334155}
+.tv-cnm-scr iframe,.tv-cnm-scr video{position:absolute;inset:0;width:100%;height:100%;border:0}
+.tv-cnm-msg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:14px;text-align:center;color:#cbd5e1;font-size:13px}
+.cnm-busca-wrap{display:flex;align-items:center;gap:8px;width:100%;margin:10px 0 8px}
+.cnm-busca-in{flex:1;min-width:0;padding:11px 14px;border-radius:12px;border:2px solid var(--cnm-cor,#f59e0b);background:#ffffff;color:#0f172a;font-size:14px;font-weight:600;outline:none}
+.cnm-lupa-btn{display:inline-flex;align-items:center;justify-content:center;padding:11px 14px;border-radius:12px;border:0;background:var(--cnm-cor,#f59e0b);color:#090d16;font-weight:800;font-size:14px}
+.cnm-g-btn{display:inline-flex;align-items:center;justify-content:center;padding:11px 12px;border-radius:12px;border:1px solid var(--cnm-cor,#f59e0b);background:#ffffff;color:#0f172a;font-weight:800;font-size:13px;text-decoration:none}
+select.cnm-escondido-todas{display:none!important}
+#cnm-rodape-box{width:100%;max-width:960px;margin:24px auto 28px;padding:16px;border-radius:18px;background:linear-gradient(180deg,#141923 0%,#0a0d14 100%);border:1.5px solid var(--cnm-cor,#f59e0b);color:#f8fafc}
+.cnm-rod-titulo{font-size:12px;font-weight:800;letter-spacing:.4px;color:var(--cnm-cor,#fbbf24);margin-bottom:10px;text-transform:uppercase}
+.cnm-redes-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:16px}
+@media (max-width:480px){.cnm-redes-grid{grid-template-columns:1fr}}
+.cnm-rede-card{display:flex;align-items:center;justify-content:center;gap:8px;padding:12px 14px;border-radius:12px;font-size:14px;font-weight:800;text-decoration:none}
+.cnm-rede-yt{background:linear-gradient(90deg,#b91c1c 0%,#ef4444 100%);color:#ffffff;border:1.5px solid #fca5a5}
+.cnm-rede-tt{background:linear-gradient(90deg,#090d16 0%,#18181b 100%);color:#ffffff;border:1.5px solid #00f2ea;box-shadow:0 0 0 1px rgba(255,0,80,.55)}
+.cnm-cores-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.cnm-cor-btn{padding:8px 13px;border-radius:10px;border:1.5px solid #475569;background:#111827;color:#f8fafc;font-size:12px;font-weight:800}
+.cnm-cor-btn.ativa{border-color:#ffffff;box-shadow:0 0 0 2px var(--cnm-cor,#f59e0b)}
+</style>
+<section id="tv-cnm-box">
+<div class="tv-cnm-top"><span class="tv-cnm-badge">ESPORTES • AO VIVO</span><span class="tv-cnm-canal">Canal News Mundo</span></div>
+<div id="tv-cnm-edit" class="tv-cnm-edit">
+<div class="tv-cnm-doms">
+<a class="tv-cnm-dom" href="https://studio.youtube.com/" target="_blank" rel="noopener noreferrer">YouTube Live</a>
+<a class="tv-cnm-dom" href="https://www.tiktok.com/live" target="_blank" rel="noopener noreferrer">TikTok Live</a>
+<a class="tv-cnm-dom" href="https://www.youtube.com/live" target="_blank" rel="noopener noreferrer">TV Ao Vivo</a>
+</div>
+<input id="tv-cnm-url" class="tv-cnm-in" type="text" placeholder="Cole link do YouTube, TikTok ou TV ao vivo..."/>
+<div class="tv-cnm-btns"><button id="tv-cnm-go" class="tv-cnm-b1" type="button">Carregar Jogo</button><button id="tv-cnm-clr" class="tv-cnm-b2" type="button">Limpar</button></div>
+</div>
+<div id="tv-cnm-scr" class="tv-cnm-scr"><div class="tv-cnm-msg">Sem transmissao no momento.</div></div>
+</section>
+<footer id="cnm-rodape-box">
+<div class="cnm-rod-titulo">Redes Sociais • Canal News Mundo</div>
+<div class="cnm-redes-grid">
+<a class="cnm-rede-card cnm-rede-yt" href="https://www.youtube.com/@canalnewsmundo" target="_blank" rel="noopener noreferrer">&#9654; YouTube</a>
+<a class="cnm-rede-card cnm-rede-tt" href="https://www.tiktok.com/@canalnewsmundo" target="_blank" rel="noopener noreferrer">&#9835; TikTok</a>
+</div>
+<div class="cnm-rod-titulo">Tom de Cor do Site</div>
+<div id="cnm-cores-lista" class="cnm-cores-row"></div>
+</footer>
+<script id="cnm-limpo-js">
+(()=>{
+const K_URL="cnm_tv_live_url";
+const K_COR="cnm_tom_cor";
+const CORES=[{nome:"Ambar",cor:"#f59e0b",escuro:"#b45309"},{nome:"Azul",cor:"#3b82f6",escuro:"#1d4ed8"},{nome:"Esmeralda",cor:"#10b981",escuro:"#047857"},{nome:"Rubi",cor:"#ef4444",escuro:"#b91c1c"}];
+let linkAtual=localStorage.getItem(K_URL)||"";
+let ultimoRender="";
+const aplicarCor=(nome)=>{
+  const esc=CORES.find(c=>c.nome===nome)||CORES[0];
+  document.documentElement.style.setProperty("--cnm-cor",esc.cor);
+  document.documentElement.style.setProperty("--cnm-cor-escura",esc.escuro);
+  document.querySelectorAll("header,[class*=header],[class*=topbar]").forEach(el=>{el.style.background="linear-gradient(90deg,"+esc.escuro+" 0%,"+esc.cor+" 100%)";});
+  document.querySelectorAll(".cnm-cor-btn").forEach(b=>{b.classList.toggle("ativa",b.dataset.nome===esc.nome);});
+  localStorage.setItem(K_COR,esc.nome);
+};
+const ehEsportes=()=>{
+  const p=(location.pathname||"").toLowerCase();
+  const hash=(location.hash||"").toLowerCase();
+  if(p.includes("/esport")||hash.includes("esport"))return true;
+  const ativo=document.querySelector("[aria-current=page],[aria-pressed=true],.active,.ativo");
+  if(ativo&&/\besportes\b/i.test(ativo.innerText||""))return true;
+  return false;
+};
+const ehAdmin=()=>{
+  const txt=document.body.innerText||"";
+  return Boolean(document.querySelector("[data-admin],.admin-panel,#painel-admin,.modo-admin"))||/\bexcluir\b|novo post|sair do admin|painel admin/i.test(txt);
+};
+const conv=u=>{
+  u=(u||"").trim();
+  const y=u.match(/(?:youtube\.com\/(?:watch\?v=|live\/|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{6,})/);
+  if(y)return"https://www.youtube.com/embed/"+y[1]+"?rel=0";
+  const t=u.match(/tiktok\.com\/@[^/]+\/video\/(\d+)/);
+  if(t)return"https://www.tiktok.com/embed/v2/"+t[1];
+  return u;
+};
+const salvar=(u)=>{
+  linkAtual=(u||"").trim();
+  if(linkAtual)localStorage.setItem(K_URL,linkAtual);else localStorage.removeItem(K_URL);
+  ultimoRender="";
+  fetch("/api/esportes-live",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({url:linkAtual,ativo:Boolean(linkAtual)})}).catch(()=>{});
+  pintar();
+};
+const initBusca=()=>{
+  const inp=Array.from(document.querySelectorAll("input[type=search],input[placeholder*=Buscar i]")).find(el=>!el.id||!el.id.startsWith("tv-cnm"));
+  if(!inp||inp.closest(".cnm-busca-wrap"))return;
+  const wrap=document.createElement("div");wrap.className="cnm-busca-wrap";
+  inp.parentNode.insertBefore(wrap,inp);wrap.appendChild(inp);inp.classList.add("cnm-busca-in");
+  const lupa=document.createElement("button");lupa.type="button";lupa.className="cnm-lupa-btn";lupa.innerHTML="&#128269;";
+  lupa.onclick=()=>{inp.dispatchEvent(new Event("input",{bubbles:true}));inp.dispatchEvent(new KeyboardEvent("keydown",{key:"Enter",bubbles:true}));};
+  wrap.appendChild(lupa);
+  const g=document.createElement("a");g.className="cnm-g-btn";g.textContent="G";g.target="_blank";g.rel="noopener noreferrer";
+  const syncG=()=>{const q=encodeURIComponent((inp.value||"").trim());g.href=q?"https://www.google.com/search?q="+q:"https://www.google.com";};
+  inp.addEventListener("input",syncG);syncG();wrap.appendChild(g);
+};
+const pintar=()=>{
+  const box=document.getElementById("tv-cnm-box");
+  const foot=document.getElementById("cnm-rodape-box");
+  if(foot&&foot.parentNode!==document.body)document.body.appendChild(foot);
+  document.querySelectorAll("select").forEach(sel=>{
+    const opts=Array.from(sel.options||[]);
+    if(opts.some(o=>/^todas$/i.test((o.textContent||"").trim()))&&opts.some(o=>/esportes|geral|mundo/i.test((o.textContent||"").trim())))sel.classList.add("cnm-escondido-todas");
+  });
+  if(!box)return;
+  const emEsp=ehEsportes();const adm=ehAdmin();
+  box.classList.toggle("so-esportes",emEsp);
+  const edit=box.querySelector("#tv-cnm-edit"),inp=box.querySelector("#tv-cnm-url"),go=box.querySelector("#tv-cnm-go"),clr=box.querySelector("#tv-cnm-clr"),scr=box.querySelector("#tv-cnm-scr");
+  if(edit)edit.classList.toggle("visivel",adm);
+  if(inp&&adm&&document.activeElement!==inp&&!inp.value)inp.value=linkAtual;
+  const u=(linkAtual||"").trim();
+  const chave=u+"|"+adm+"|"+emEsp;
+  if(chave!==ultimoRender){
+    ultimoRender=chave;
+    if(!u){scr.innerHTML="<div class=\"tv-cnm-msg\">Sem transmissao no momento.</div>";}
+    else{const f=conv(u);const tag=/\.(mp4|webm|ogg|m3u8)(\?.*)?$/i.test(f)?"video":"iframe";const el=document.createElement(tag);el.src=f;if(tag==="video"){el.controls=true;el.playsInline=true;}else{el.allow="autoplay; fullscreen; picture-in-picture";el.allowFullscreen=true;}scr.innerHTML="";scr.appendChild(el);}
+  }
+  if(go)go.onclick=()=>salvar(inp.value);
+  if(clr)clr.onclick=()=>salvar("");
+};
+const run=()=>{
+  initBusca();
+  const lista=document.getElementById("cnm-cores-lista");
+  if(lista){lista.innerHTML="";CORES.forEach(c=>{const b=document.createElement("button");b.type="button";b.className="cnm-cor-btn";b.dataset.nome=c.nome;b.textContent=c.nome;b.style.borderColor=c.cor;b.onclick=()=>aplicarCor(c.nome);lista.appendChild(b);});}
+  aplicarCor(localStorage.getItem(K_COR)||"Ambar");
+  fetch("/api/esportes-live").then(r=>r.ok?r.json():null).then(d=>{if(d&&typeof d.url==="string"){linkAtual=d.url.trim();if(linkAtual)localStorage.setItem(K_URL,linkAtual);ultimoRender="";}pintar();}).catch(()=>pintar());
+  pintar();setInterval(pintar,1200);
+};
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",run);else run();
+})();
+</script>
+<style id="cnm-rodape-visual-style">
+#cnm-rodape-box{width:100%;max-width:960px;margin:24px auto 28px;padding:18px;border-radius:18px;background:#0d1320;border:2px solid var(--cnm-cor,#f59e0b);color:#f8fafc;box-sizing:border-box}
+#cnm-rodape-box .cnm-rod-titulo{font-size:12px;font-weight:900;letter-spacing:.6px;color:#fbbf24;margin-bottom:12px;text-transform:uppercase}
+#cnm-rodape-box .cnm-redes-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:18px}
+@media (max-width:520px){#cnm-rodape-box .cnm-redes-grid{grid-template-columns:1fr}}
+#cnm-rodape-box a.cnm-rede-yt{display:flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;padding:14px 16px!important;border-radius:14px!important;background:linear-gradient(135deg,#dc2626 0%,#ef4444 100%)!important;color:#ffffff!important;border:2px solid #fca5a5!important;font-weight:900!important;font-size:14px!important;text-decoration:none!important;box-shadow:0 6px 18px rgba(220,38,38,.35)!important}
+#cnm-rodape-box a.cnm-rede-tt{display:flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;padding:14px 16px!important;border-radius:14px!important;background:linear-gradient(135deg,#090d16 0%,#171923 100%)!important;color:#ffffff!important;border:2px solid #22d3ee!important;font-weight:900!important;font-size:14px!important;text-decoration:none!important;box-shadow:0 0 0 2px rgba(244,63,94,.65),0 6px 18px rgba(34,211,238,.22)!important}
+#cnm-rodape-box .cnm-cores-row{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+@media (min-width:640px){#cnm-rodape-box .cnm-cores-row{grid-template-columns:repeat(4,minmax(0,1fr))!important}}
+#cnm-rodape-box button.cnm-cor-btn{display:flex!important;align-items:center!important;justify-content:flex-start!important;gap:10px!important;padding:10px 12px!important;border-radius:12px!important;background:#131b2e!important;color:#ffffff!important;border:2px solid #334155!important;font-weight:800!important;font-size:13px!important;cursor:pointer!important}
+#cnm-rodape-box button.cnm-cor-btn.ativa{background:#1e293b!important;border-color:#ffffff!important;transform:translateY(-1px)!important}
+#cnm-rodape-box .cnm-cor-bolinha{width:18px;height:18px;border-radius:999px;flex:0 0 18px;border:2px solid rgba(255,255,255,.75)}
+</style>
+<script id="cnm-rodape-visual-js">
+(()=>{
+const K_COR="cnm_tom_cor";
+const CORES=[{nome:"Ambar",cor:"#f59e0b",escuro:"#b45309"},{nome:"Azul",cor:"#3b82f6",escuro:"#1d4ed8"},{nome:"Esmeralda",cor:"#10b981",escuro:"#047857"},{nome:"Rubi",cor:"#ef4444",escuro:"#b91c1c"}];
+const aplicarCor=(nome)=>{
+  const esc=CORES.find(c=>c.nome===nome)||CORES[0];
+  document.documentElement.style.setProperty("--cnm-cor",esc.cor);
+  document.documentElement.style.setProperty("--cnm-cor-escura",esc.escuro);
+  const box=document.getElementById("cnm-rodape-box");
+  if(box)box.style.borderColor=esc.cor;
+  document.querySelectorAll("header,[class*=header],[class*=topbar]").forEach(el=>{el.style.background="linear-gradient(90deg,"+esc.escuro+" 0%,"+esc.cor+" 100%)";});
+  document.querySelectorAll("#cnm-rodape-box .cnm-cor-btn").forEach(b=>{const ativa=b.dataset.nome===esc.nome;b.classList.toggle("ativa",ativa);b.style.boxShadow=ativa?"0 0 0 2px "+esc.cor:"none";});
+  localStorage.setItem(K_COR,esc.nome);
+};
+const montar=()=>{
+  const lista=document.getElementById("cnm-cores-lista");
+  if(!lista)return;
+  lista.innerHTML="";
+  CORES.forEach(c=>{
+    const b=document.createElement("button");
+    b.type="button";
+    b.className="cnm-cor-btn";
+    b.dataset.nome=c.nome;
+    const dot=document.createElement("span");
+    dot.className="cnm-cor-bolinha";
+    dot.style.background=c.cor;
+    const txt=document.createElement("span");
+    txt.textContent=c.nome;
+    b.appendChild(dot);b.appendChild(txt);
+    b.onclick=()=>aplicarCor(c.nome);
+    lista.appendChild(b);
+  });
+  aplicarCor(localStorage.getItem(K_COR)||"Ambar");
+};
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",montar);else montar();
+setTimeout(montar,400);
+})();
+</script>
+<style id="cnm-quatro-redes-style">
+#cnm-rodape-box .cnm-redes-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;margin-bottom:18px!important}
+@media (max-width:460px){#cnm-rodape-box .cnm-redes-grid{grid-template-columns:1fr!important}}
+#cnm-rodape-box .cnm-rede-item{display:flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;padding:13px 14px!important;border-radius:14px!important;font-weight:900!important;font-size:14px!important;text-decoration:none!important;box-sizing:border-box!important}
+#cnm-rodape-box .cnm-rede-yt{background:linear-gradient(135deg,#dc2626 0%,#ef4444 100%)!important;color:#ffffff!important;border:2px solid #fca5a5!important;cursor:pointer!important}
+#cnm-rodape-box .cnm-rede-tt{background:linear-gradient(135deg,#090d16 0%,#171923 100%)!important;color:#ffffff!important;border:2px solid #22d3ee!important;box-shadow:0 0 0 1.5px rgba(244,63,94,.65)!important;cursor:pointer!important}
+#cnm-rodape-box .cnm-rede-ig{background:linear-gradient(135deg,#833ab4 0%,#fd1d1d 55%,#fcb045 100%)!important;color:#ffffff!important;border:2px solid #fbcfe8!important;cursor:default!important}
+#cnm-rodape-box .cnm-rede-tg{background:linear-gradient(135deg,#0284c7 0%,#38bdf8 100%)!important;color:#ffffff!important;border:2px solid #bae6fd!important;cursor:default!important}
+</style>
+<script id="cnm-quatro-redes-js">
+(()=>{
+const montarRedes=()=>{
+  const grid=document.querySelector("#cnm-rodape-box .cnm-redes-grid");
+  if(!grid)return;
+  grid.innerHTML="";
+  const itens=[
+    {tipo:"link",cls:"cnm-rede-yt",txt:"\u25B6 YouTube",href:"https://www.youtube.com/@canalnewsmundo"},
+    {tipo:"link",cls:"cnm-rede-tt",txt:"\u266B TikTok",href:"https://www.tiktok.com/@canalnewsmundo"},
+    {tipo:"bloco",cls:"cnm-rede-ig",txt:"\u25CE Instagram"},
+    {tipo:"bloco",cls:"cnm-rede-tg",txt:"\u2708 Telegram"}
+  ];
+  itens.forEach(it=>{
+    if(it.tipo==="link"){
+      const a=document.createElement("a");
+      a.className="cnm-rede-item "+it.cls;
+      a.href=it.href;a.target="_blank";a.rel="noopener noreferrer";
+      a.textContent=it.txt;grid.appendChild(a);
+    }else{
+      const d=document.createElement("div");
+      d.className="cnm-rede-item "+it.cls;
+      d.textContent=it.txt;
+      d.addEventListener("click",e=>{e.preventDefault();e.stopPropagation();});
+      grid.appendChild(d);
+    }
+  });
+};
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",montarRedes);else montarRedes();
+setTimeout(montarRedes,500);
+})();
+</script>
+<script id="cnm-sobre-lista-js">
+(()=>{
+const colocarNaLista=()=>{
+  const abrir=()=>{const m=document.getElementById("cnm-sobre-modal");if(m)m.classList.add("aberto");};
+  document.querySelectorAll("nav,aside,[class*=menu],[class*=drawer],[class*=sidebar]").forEach(menu=>{
+    if(menu.querySelector(".cnm-sobre-item-secao"))return;
+    const itens=Array.from(menu.querySelectorAll("a,button"));
+    const alvo=itens.find(el=>/\b(geral|esportes)\b/i.test((el.innerText||"").trim()));
+    if(!alvo||!alvo.parentNode)return;
+    const btn=document.createElement(alvo.tagName==="A"?"a":"button");
+    if(btn.tagName==="BUTTON")btn.type="button";
+    else btn.href="#sobre";
+    btn.className=alvo.className+" cnm-sobre-item-secao";
+    btn.textContent="Sobre";
+    btn.onclick=(e)=>{e.preventDefault();e.stopPropagation();abrir();};
+    alvo.parentNode.insertBefore(btn,alvo.nextSibling);
+  });
+};
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",colocarNaLista);else colocarNaLista();
+setInterval(colocarNaLista,1000);
+})();
+</script>
+
+<div id="cnm-sobre-modal" role="dialog" aria-modal="true" aria-labelledby="cnm-modal-titulo">
+<div class="cnm-modal-card">
+<div class="cnm-modal-top">
+<span id="cnm-modal-titulo" class="cnm-modal-titulo">Sobre o Canal News Mundo</span>
+<button id="cnm-fechar-sobre" class="cnm-modal-fechar" type="button">Fechar</button>
+</div>
+<div class="cnm-modal-sec">
+<div class="cnm-modal-sub">Quem Somos</div>
+<p>O <strong>Canal News Mundo</strong> e um portal digital independente focado em informacao rapida, cobertura esportiva, atualidades do mundo, tecnologia e assuntos gerais, com navegacao leve para celular, tablet e computador.</p>
+</div>
+<div class="cnm-modal-sec">
+<div class="cnm-modal-sub">O Que Voce Encontra Aqui</div>
+<ul>
+<li><strong>Noticias e Atualidades:</strong> publicacoes organizadas por secoes (Todas as noticias, Mundo, Esportes, Tecnologia e Geral).</li>
+<li><strong>Esportes Ao Vivo:</strong> espaco dedicado na aba de Esportes para acompanhar transmissao carregada pela administracao.</li>
+<li><strong>Busca Rapida e Google:</strong> filtre conteudos do portal ou pesquise diretamente no Google com um clique.</li>
+<li><strong>Personalizacao:</strong> escolha o tom de cor do site no rodape com salvamento automatico no navegador.</li>
+</ul>
+</div>
+<div class="cnm-modal-sec">
+<div class="cnm-modal-sub">Canais Oficiais e Transparencia</div>
+<p>Acompanhe nossos videos e coberturas tambem no <strong>YouTube</strong> e no <strong>TikTok (@canalnewsmundo)</strong>. Transmissoes ou conteudos incorporados de plataformas externas seguem a disponibilidade e as regras de cada plataforma de origem.</p>
+</div>
+<button id="cnm-ok-sobre" class="cnm-aba-btn ativa" type="button">Fechar Janela</button>
+</div>
+</div>
+
+<style id="cnm-cor-admin-style">
+#cnm-rodape-box .cnm-cor-area{display:none!important}
+#cnm-rodape-box.admin-cores-visivel .cnm-cor-area{display:block!important;margin-bottom:16px!important}
+</style>
+<script id="cnm-cor-admin-js">
+(()=>{
+const COR_PADRAO="Ambar";
+const K_COR="cnm_tom_cor";
+const CORES=[{nome:"Ambar",cor:"#f59e0b",escuro:"#b45309"},{nome:"Azul",cor:"#3b82f6",escuro:"#1d4ed8"},{nome:"Esmeralda",cor:"#10b981",escuro:"#047857"},{nome:"Rubi",cor:"#ef4444",escuro:"#b91c1c"}];
+const ehAdmin=()=>{
+  const txt=document.body.innerText||"";
+  return Boolean(document.querySelector("[data-admin],.admin-panel,#painel-admin,.modo-admin"))||/\bexcluir\b|novo post|sair do admin|painel admin/i.test(txt);
+};
+const aplicarCor=(nome,salvarLocal)=>{
+  const esc=CORES.find(c=>c.nome===nome)||CORES.find(c=>c.nome===COR_PADRAO)||CORES[0];
+  document.documentElement.style.setProperty("--cnm-cor",esc.cor);
+  document.documentElement.style.setProperty("--cnm-cor-escura",esc.escuro);
+  const box=document.getElementById("cnm-rodape-box");
+  if(box)box.style.borderColor=esc.cor;
+  document.querySelectorAll("header,[class*=header],[class*=topbar]").forEach(el=>{el.style.background="linear-gradient(90deg,"+esc.escuro+" 0%,"+esc.cor+" 100%)";});
+  document.querySelectorAll("#cnm-rodape-box .cnm-cor-btn").forEach(b=>{const ativa=b.dataset.nome===esc.nome;b.classList.toggle("ativa",ativa);b.style.boxShadow=ativa?"0 0 0 2px "+esc.cor:"none";});
+  if(salvarLocal)localStorage.setItem(K_COR,esc.nome);
+};
+const prepararAreaCor=()=>{
+  const box=document.getElementById("cnm-rodape-box");
+  const lista=document.getElementById("cnm-cores-lista");
+  if(!box||!lista)return;
+  if(!box.querySelector(".cnm-cor-area")){
+    const area=document.createElement("div");
+    area.className="cnm-cor-area";
+    const prev=lista.previousElementSibling;
+    if(prev&&/tom de cor/i.test(prev.innerText||""))area.appendChild(prev);
+    area.appendChild(lista);
+    const redes=box.querySelector(".cnm-redes-grid");
+    if(redes&&redes.nextSibling)box.insertBefore(area,redes.nextSibling);
+    else box.appendChild(area);
+  }
+  const adm=ehAdmin();
+  box.classList.toggle("admin-cores-visivel",adm);
+  const corAtiva=adm?(localStorage.getItem(K_COR)||COR_PADRAO):COR_PADRAO;
+  aplicarCor(corAtiva,adm);
+};
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",prepararAreaCor);else prepararAreaCor();
+setInterval(prepararAreaCor,1000);
+})();
+</script>
+
+
+
+<section id="cnm-pagina-sobre" aria-label="Sobre o Canal News Mundo">
+<div class="cnm-pag-topo">
+<span class="cnm-pag-titulo">Sobre o Canal News Mundo</span>
+<button id="cnm-voltar-noticias" class="cnm-pag-voltar" type="button">Voltar para notícias</button>
+</div>
+<div class="cnm-pag-bloco">
+<div class="cnm-pag-sub">Quem Somos</div>
+<p>O <strong>Canal News Mundo</strong> é um portal digital independente focado em informação rápida, cobertura esportiva, atualidades do mundo, tecnologia e assuntos gerais, com navegação leve para celular, tablet e computador.</p>
+</div>
+<div class="cnm-pag-bloco">
+<div class="cnm-pag-sub">O Que Você Encontra Aqui</div>
+<ul>
+<li><strong>Notícias e Atualidades:</strong> publicações organizadas por seções (Todas as notícias, Mundo, Esportes, Tecnologia e Geral).</li>
+<li><strong>Esportes Ao Vivo:</strong> espaço dedicado na aba de Esportes para acompanhar a transmissão carregada pela administração.</li>
+<li><strong>Busca Rápida e Google:</strong> filtre conteúdos do portal ou pesquise diretamente no Google com um clique.</li>
+<li><strong>Identidade Visual:</strong> o tom de cor do site é definido pela administração para manter uma aparência limpa e profissional aos visitantes.</li>
+</ul>
+</div>
+<div class="cnm-pag-bloco">
+<div class="cnm-pag-sub">Canais Oficiais e Transparência</div>
+<p>Acompanhe nossos vídeos e coberturas também no <strong>YouTube</strong> e no <strong>TikTok (@canalnewsmundo)</strong>. As transmissões ao vivo e links externos dependem da disponibilidade e das regras de cada plataforma de origem.</p>
+</div>
+<button id="cnm-voltar-noticias-baixo" class="cnm-pag-voltar" type="button">Voltar para notícias</button>
+</section>
+
+<style id="cnm-secao-padrao-style">
+#cnm-secao-sobre{display:none;width:100%;max-width:960px;margin:14px auto 20px;padding:16px;border-radius:16px;background:#141b29;border:1.5px solid rgba(255,255,255,.12);color:#f8fafc;box-sizing:border-box}
+#cnm-secao-sobre.ativa{display:block}
+#cnm-secao-sobre .cnm-sec-cab{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.1)}
+#cnm-secao-sobre .cnm-sec-tit{font-size:17px;font-weight:800;color:#ffffff}
+#cnm-secao-sobre .cnm-sec-voltar{padding:7px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.2);background:#1e293b;color:#f8fafc;font-size:12px;font-weight:700;cursor:pointer}
+#cnm-secao-sobre .cnm-sec-texto{font-size:14px;line-height:1.6;color:#e2e8f0;margin-bottom:12px}
+#cnm-secao-sobre .cnm-sec-rodape-box{padding:12px;border-radius:12px;background:#0c111b;border:1px solid rgba(255,255,255,.08);font-size:13px;line-height:1.55;color:#cbd5e1}
+body.cnm-ver-sobre main > *:not(#cnm-secao-sobre):not(#cnm-rodape-box),body.cnm-ver-sobre #root > *:not(#cnm-secao-sobre):not(#cnm-rodape-box),body.cnm-ver-sobre article,body.cnm-ver-sobre .noticias,.feed,.lista-noticias{display:none!important}
+#cnm-rodape-box .cnm-rodape-final{margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.14);font-size:12px;line-height:1.55;color:#cbd5e1}
+#cnm-rodape-box .cnm-rodape-final strong{color:#f8fafc}
+#cnm-rodape-box .cnm-rodape-copy{margin-top:8px;padding-top:8px;border-top:1px dashed rgba(255,255,255,.12);font-size:11px;color:#94a3b8;text-align:center}
+</style>
+<section id="cnm-secao-sobre">
+<div class="cnm-sec-cab">
+<span class="cnm-sec-tit">Sobre</span>
+<button id="cnm-btn-voltar-sobre" class="cnm-sec-voltar" type="button">Voltar</button>
+</div>
+<div class="cnm-sec-texto">
+<strong>Canal News Mundo</strong> — Portal de notícias, esportes, tecnologia e atualidades. Conteúdo informativo com navegação leve para celular, tablet e computador e acesso direto aos canais oficiais no YouTube e TikTok (@canalnewsmundo).
+</div>
+<div class="cnm-sec-rodape-box">
+As transmissões ao vivo na aba de Esportes e os links externos dependem da disponibilidade e das regras da plataforma de origem. O tom visual do site é definido pela administração para manter uma aparência limpa e profissional para todos os visitantes.<br><br><strong>Canal News Mundo • Todos os direitos reservados</strong>
+</div>
+</section>
+<script id="cnm-secao-padrao-js">
+(()=>{
+const montarFinalRodape=()=>{
+  const foot=document.getElementById("cnm-rodape-box");
+  if(!foot)return;
+  if(foot.parentNode!==document.body)document.body.appendChild(foot);
+  if(!foot.querySelector(".cnm-rodape-final")){
+    const fin=document.createElement("div");
+    fin.className="cnm-rodape-final";
+    fin.innerHTML="<strong>Canal News Mundo</strong> — Portal de notícias, esportes, tecnologia e atualidades. Conteúdo informativo com acesso direto aos canais oficiais no YouTube e TikTok (@canalnewsmundo). As transmissões ao vivo e links externos dependem da fonte original.<div class=\"cnm-rodape-copy\">Canal News Mundo • Todos os direitos reservados</div>";
+    foot.appendChild(fin);
+  }
+};
+const abrirSobre=(abrir)=>{
+  const s=document.getElementById("cnm-secao-sobre");
+  if(s&&s.parentNode!==document.body)document.body.appendChild(s);
+  document.body.classList.toggle("cnm-ver-sobre",Boolean(abrir));
+  if(s)s.classList.toggle("ativa",Boolean(abrir));
+  if(abrir)window.scrollTo({top:0,behavior:"instant"});
+};
+const init=()=>{
+  montarFinalRodape();
+  const v=document.getElementById("cnm-btn-voltar-sobre");
+  if(v)v.onclick=()=>abrirSobre(false);
+  document.addEventListener("click",e=>{
+    const item=e.target.closest("nav a,nav button,aside a,aside button,[class*=menu] a,[class*=menu] button,[class*=drawer] a,[class*=drawer] button");
+    if(!item)return;
+    const t=(item.innerText||"").trim();
+    if(/^sobre$/i.test(t)){
+      e.preventDefault();e.stopPropagation();abrirSobre(true);
+    }else if(/todas as not|mundo|esportes|tecnologia|geral|in[ií]cio/i.test(t)){
+      abrirSobre(false);
+    }
+  },true);
+};
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+setInterval(montarFinalRodape,1200);
+})();
+</script>
+</body>
+</html>
